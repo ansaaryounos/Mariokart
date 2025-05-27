@@ -1,0 +1,186 @@
+@font-face {
+    font-family: mariokart;
+    src: url(Mariokart/font/mario_kart_f2.ttf);
+}
+
+@font-face {
+    font-family: Poppins-Bold;
+    src: url(Mariokart/font/Poppins-ExtraBold.ttf);
+}
+
+@font-face {
+    font-family: Poppins-Medium;
+    src: url(Mariokart/font/Poppins-Medium.ttf);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#bg-img {
+    position: fixed;
+    top: 0;
+    width: 120%;
+    left: 0;
+    z-index: -1;
+}
+
+.header-container {
+    margin-top: 7em;
+    text-align: center;
+}
+
+.header-container h1 {
+    font-family: mariokart;
+    font-size: 6em;
+    margin-bottom: 0px;
+}
+
+.header-container h3 {
+    font-family: Poppins-Bold;
+    font-size: 4em;
+    margin-top: 0px;
+}
+
+h3 {
+    font-family: Poppins-Medium;
+    font-size: 2em;
+}
+
+#position-container {
+    margin-top: -40px;
+    width: 65%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    transform: scale(0.9);
+}
+
+#position-container img {
+    width: 20em;
+    text-align: justify;
+    filter: drop-shadow(0px 0px 5px rgba(75, 75, 75, 0.757));
+}
+
+#position-container:hover {
+    transform: scale(0.8);
+}
+
+.item-box {
+    width: 600px;
+    height: 600px;
+    margin: 0 auto 24px auto;
+    overflow: hidden;
+    border: 10px solid #6e6e6e;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #474747bf;
+    background: #2b2b2b;
+    position: relative;
+  }
+  .item-strip {
+    display: flex;
+    flex-direction: column;
+    transition: transform 2.2s cubic-bezier(.15,1.3,.43,1);
+    will-change: transform;
+  }
+  .item-img {
+    width: 600px;
+    height: 600px;
+    object-fit: contain;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+    transform: scale(0.7);
+  }
+  #result-container {
+    display: none;
+    width: 70em;
+    margin-top: 5em;
+  }
+
+  #description {
+    margin-top: 100px;
+    font-family: Poppins-Medium;
+    font-size: 3em;
+    text-align: center;
+    opacity: 0;
+    transition: 0.5s ease-out;
+  }
+
+  @media only screen and (max-width: 600px) {
+
+    #bg-img {
+        position: fixed;
+        top: 0;
+        width: 200%;
+        left: 0;
+        z-index: -1;
+    }
+
+    .header-container h1 {
+        font-size: 20px;
+    }
+
+    .header-container h3 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
+
+    #position-container {
+        margin-top: -20px;
+        width: 90%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        transform: scale(0.9);
+    }
+    
+    #position-container img {
+        width: 7em;
+        text-align: justify;
+        filter: drop-shadow(0px 0px 5px rgba(75, 75, 75, 0.757));
+    }
+
+    .item-box {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 24px auto;
+        overflow: hidden;
+        border: 10px solid #6e6e6e;
+        border-radius: 50%;
+        box-shadow: 0 0 20px #474747bf;
+        background: #2b2b2b;
+        position: relative;
+      }
+
+      .item-img {
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+        display: block;
+        user-select: none;
+        pointer-events: none;
+        transform: scale(0.7);
+      }
+
+      #result-container {
+        display: none;
+        width: 20em;
+        margin-top: 5em;
+      }
+
+      #description {
+        margin-top: 100px;
+        font-family: Poppins-Medium;
+        font-size: 1em;
+        text-align: center;
+        opacity: 0;
+        transition: 0.5s ease-out;
+      }
+  }
