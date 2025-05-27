@@ -1,16 +1,16 @@
 @font-face {
     font-family: mariokart;
-    src: url(Mariokart/font/mario_kart_f2.ttf);
+    src: url(font/mario_kart_f2.ttf);
 }
 
 @font-face {
     font-family: Poppins-Bold;
-    src: url(Mariokart/font/Poppins-ExtraBold.ttf);
+    src: url(font/Poppins-ExtraBold.ttf);
 }
 
 @font-face {
     font-family: Poppins-Medium;
-    src: url(Mariokart/font/Poppins-Medium.ttf);
+    src: url(font/Poppins-Medium.ttf);
 }
 
 body {
