@@ -70,8 +70,8 @@ h3 {
 }
 
 .item-box {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     margin: 0 auto 24px auto;
     overflow: hidden;
     border: 10px solid #6e6e6e;
@@ -87,8 +87,8 @@ h3 {
     will-change: transform;
   }
   .item-img {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     object-fit: contain;
     display: block;
     user-select: none;
@@ -97,14 +97,14 @@ h3 {
   }
   #result-container {
     display: none;
-    width: 70em;
+    width: 40em;
     margin-top: 5em;
   }
 
   #description {
     margin-top: 100px;
     font-family: Poppins-Medium;
-    font-size: 3em;
+    font-size: 1em;
     text-align: center;
     opacity: 0;
     transition: 0.5s ease-out;
