@@ -70,8 +70,8 @@ h3 {
 }
 
 .item-box {
-    width: 600px;
-    height: 600px;
+    width: 200px;
+    height: 200px;
     margin: 0 auto 24px auto;
     overflow: hidden;
     border: 10px solid #6e6e6e;
@@ -87,8 +87,8 @@ h3 {
     will-change: transform;
   }
   .item-img {
-    width: 600px;
-    height: 600px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
     display: block;
     user-select: none;
