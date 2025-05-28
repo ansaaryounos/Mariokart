@@ -29,19 +29,19 @@ body {
 }
 
 .header-container {
-    margin-top: 5em;
+    margin-top: 2em;
     text-align: center;
 }
 
 .header-container h1 {
     font-family: mariokart;
-    font-size: 4em;
+    font-size: 2em;
     margin-bottom: 0px;
 }
 
 .header-container h3 {
     font-family: Poppins-Bold;
-    font-size: 2em;
+    font-size: 1em;
     margin-top: 0px;
 }
 
