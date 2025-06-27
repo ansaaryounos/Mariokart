@@ -1,7 +1,8 @@
 // Utility: Clamp a value between min and max
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
-let playerCount = 12; // default, updated on game start
+const selectElement = document.getElementById('num');
+let playerCount = selectElement.value;
 
 function GetRandomItem(position, totalPlayers) {
     const percentile = position / totalPlayers;
