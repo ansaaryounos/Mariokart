@@ -107,6 +107,7 @@ function renderPositionButtons() {
         img.onclick = () => RollItemBox(i);
         container.appendChild(img);
     }
+    container.style.display = "block";
 }
 
 
