@@ -2,7 +2,7 @@
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
 const selectElement = document.getElementById('num');
-let playerCount = selectElement.value;
+let playerCount = 12;
 
 function GetRandomItem(position, totalPlayers) {
     const percentile = position / totalPlayers;
