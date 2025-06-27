@@ -1,18 +1,21 @@
+// Utility: Clamp a value between min and max
+const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
-function GetRandomItem(position) {
+let playerCount = 4; // default, updated on game start
 
-    const pos = Math.max(1, Math.min(position, itemOdds.length));
-    const odds = itemOdds[pos - 1];
+function GetRandomItem(position, totalPlayers) {
+    const percentile = position / totalPlayers;
+    const index = Math.min(itemOdds.length - 1, Math.floor(percentile * itemOdds.length));
+    const odds = itemOdds[index];
+
     const items = Object.keys(odds);
     const weights = Object.values(odds);
-    
-    let total = weights.reduce((a,b) => a + b, 0);
+
+    let total = weights.reduce((a, b) => a + b, 0);
     let rnd = Math.random() * total;
 
     for (let i = 0; i < items.length; i++) {
-        if (rnd < weights[i]) {
-            return items[i];
-        }
+        if (rnd < weights[i]) return items[i];
         rnd -= weights[i];
     }
 
@@ -21,82 +24,32 @@ function GetRandomItem(position) {
 
 function GetRandomFocusItem() {
     const items = Object.keys(focusItemImages);
-    const randomIndex = Math.floor(Math.random() * items.length);
-    return items[randomIndex];
+    return items[Math.floor(Math.random() * items.length)];
 }
 
-function RollItemBox(pos) {
-
-    document.getElementById("position-container").style.display = "none";
-    document.getElementById("info").style.display = "none";
-    document.getElementById("focus-container").style.display = "none";
-    document.getElementById("result-container").style.display = "block";
-
-    const realItem = GetRandomItem(pos);
+function buildItemStrip(itemKeys, imageMap, realItem) {
     const strip = document.getElementById('item-strip');
-    const itemKeys = Object.keys(itemImages);
     strip.innerHTML = "";
 
     for (let i = 0; i < 21; i++) {
         const randItem = itemKeys[Math.floor(Math.random() * itemKeys.length)];
         const img = document.createElement("img");
-        img.src = itemImages[randItem];
+        img.src = imageMap[randItem];
         img.className = "item-img";
         strip.appendChild(img);
     }
 
     const finalImg = document.createElement("img");
-    finalImg.src = itemImages[realItem];
+    finalImg.src = imageMap[realItem];
     finalImg.className = "item-img";
     strip.appendChild(finalImg);
 
-    const icon = document.getElementById("item-box");
-    const iconStyle = window.getComputedStyle(icon);
-    const iconHeight = iconStyle.width.substring(0,3);
-    console.log(iconHeight);
-    strip.style.transition = "none";
-    strip.style.transform = "translateY(0px)";
-    void strip.offsetWidth;
-
-    setTimeout(() => {
-        strip.style.transition = "transform 2.2s cubic-bezier(.15,1.3,.43,1)";
-        strip.style.transform = `translateY(-${21 * iconHeight}px)`;
-      }, 50);
-    
-    setTimeout(() => {
-        const desc = document.getElementById('description');
-        desc.innerText = itemDescriptions[realItem] || "";
-        desc.style.opacity = 1;
-    }, 2300);
+    return strip;
 }
 
-function RollFocusItemBox() {
-    document.getElementById("position-container").style.display = "none";
-    document.getElementById("info").style.display = "none";
-    document.getElementById("focus-container").style.display = "none";
-    document.getElementById("result-container").style.display = "block";
-
-    const realItem = GetRandomFocusItem();
-    const strip = document.getElementById('item-strip');
-    const itemKeys = Object.keys(focusItemImages);
-    strip.innerHTML = "";
-
-    for (let i = 0; i < 21; i++) {
-        const randItem = itemKeys[Math.floor(Math.random() * itemKeys.length)];
-        const img = document.createElement("img");
-        img.src = focusItemImages[randItem];
-        img.className = "item-img";
-        strip.appendChild(img);
-    }
-
-    const finalImg = document.createElement("img");
-    finalImg.src = focusItemImages[realItem];
-    finalImg.className = "item-img";
-    strip.appendChild(finalImg);
-
+function animateItemStrip(strip) {
     const icon = document.getElementById("item-box");
-    const iconStyle = window.getComputedStyle(icon);
-    const iconHeight = iconStyle.width.substring(0, 3);
+    const iconHeight = parseInt(window.getComputedStyle(icon).width, 10);
     strip.style.transition = "none";
     strip.style.transform = "translateY(0px)";
     void strip.offsetWidth;
@@ -105,13 +58,46 @@ function RollFocusItemBox() {
         strip.style.transition = "transform 2.2s cubic-bezier(.15,1.3,.43,1)";
         strip.style.transform = `translateY(-${21 * iconHeight}px)`;
     }, 50);
+}
 
+function revealDescription(realItem, descriptions) {
     setTimeout(() => {
         const desc = document.getElementById('description');
-        desc.innerText = focusItemDescriptions[realItem] || "";
+        desc.innerText = descriptions[realItem] || "";
         desc.style.opacity = 1;
     }, 2300);
 }
+
+function showResultUI() {
+    document.getElementById("position-container").style.display = "none";
+    document.getElementById("info").style.display = "none";
+    document.getElementById("focus-container").style.display = "none";
+    document.getElementById("result-container").style.display = "block";
+}
+
+function RollItemBox(pos) {
+    showResultUI();
+    const realItem = GetRandomItem(pos, playerCount);
+    const strip = buildItemStrip(Object.keys(itemImages), itemImages, realItem);
+    animateItemStrip(strip);
+    revealDescription(realItem, itemDescriptions);
+}
+
+function RollFocusItemBox() {
+    showResultUI();
+    const realItem = GetRandomFocusItem();
+    const strip = buildItemStrip(Object.keys(focusItemImages), focusItemImages, realItem);
+    animateItemStrip(strip);
+    revealDescription(realItem, focusItemDescriptions);
+}
+
+function setPlayerCount(count) {
+    playerCount = clamp(parseInt(count, 10), 2, 12); // ensure valid range
+    console.log(`Player count set to: ${playerCount}`);
+}
+
+// Example usage: setPlayerCount(document.getElementById("player-count").value);
+
 
 
 
