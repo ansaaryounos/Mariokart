@@ -98,6 +98,16 @@ function setPlayerCount(count) {
 }
 
 // Example usage: setPlayerCount(document.getElementById("player-count").value);
+function renderPositionButtons() {
+    const container = document.getElementById("position-container");
+    container.innerHTML = "";
+    for (let i = 1; i <= playerCount; i++) {
+        const img = document.createElement("img");
+        img.src = `img/positions/${i}.png`;
+        img.onclick = () => RollItemBox(i);
+        container.appendChild(img);
+    }
+}
 
 
 
