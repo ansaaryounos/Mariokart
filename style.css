@@ -112,7 +112,7 @@ h3 {
 
   #focus-container {
     width: 40%;
-    display: none;
+    display: flex;
   }
 
   #focus-container img {
