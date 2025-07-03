@@ -5,8 +5,8 @@ const selectElement = document.getElementById('num');
 let playerCount = 12;
 
 function GetRandomItem(position, totalPlayers) {
-    const percentile = position / totalPlayers;
-    const index = Math.min(itemOdds.length - 1, Math.floor(percentile * itemOdds.length));
+    const clampedPos = clamp(position, 1, totalPlayers);
+    const index = Math.floor(((clampedPos - 1) / (totalPlayers - 1)) * (itemOdds.length - 1));
     const odds = itemOdds[index];
 
     const items = Object.keys(odds);
